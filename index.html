@@ -12,10 +12,8 @@
 :root{
   --bg:#f5f0e8;--surface:#fffdf8;--surface2:#eee9de;
   --ink:#1a1a14;--ink2:#4a4a3a;--ink3:#8a8a72;
-  --accent:#c84b2f;--accent2:#e8623e;
-  --teal:#1a6b5a;--teal2:#22947a;
-  --gold:#b8860b;
-  --border:#d4cebf;--border2:#c0b9a8;
+  --accent:#c84b2f;--teal:#1a6b5a;--teal2:#22947a;
+  --gold:#b8860b;--border:#d4cebf;--border2:#c0b9a8;
   --shadow:rgba(26,26,20,.10);
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -91,7 +89,7 @@ html,body{background:var(--bg);font-family:'Syne',sans-serif;color:var(--ink);mi
 .pchip{display:flex;align-items:center;gap:4px;background:var(--surface2);border-radius:8px;padding:5px 8px;margin-bottom:4px;animation:pop .2s ease both}
 .pchip-nm{flex:1;font-size:11px;color:var(--ink2)}
 .pchip-pr{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--ink);font-weight:500;margin-right:6px}
-.pchip-del{background:none;border:none;cursor:pointer;color:var(--ink3);font-size:12px;line-height:1;padding:0;transition:color .15s}
+.pchip-del{background:none;border:none;cursor:pointer;color:var(--ink3);font-size:12px;line-height:1;padding:0 2px;transition:color .15s;flex-shrink:0}
 .pchip-del:hover{color:var(--accent)}
 .psubtotal{display:flex;justify-content:space-between;font-size:11px;padding:5px 0 0;border-top:1px dashed var(--border);margin-top:3px}
 .psubtotal .l{color:var(--ink3)}.psubtotal .v{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold)}
@@ -110,6 +108,7 @@ html,body{background:var(--bg);font-family:'Syne',sans-serif;color:var(--ink);mi
 .btn-stop{width:100%;margin-top:8px;padding:11px;border-radius:10px;border:1.5px solid var(--border2);background:transparent;color:var(--ink2);font-family:'Syne',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:all .15s}
 .btn-stop:hover{border-color:var(--accent);color:var(--accent)}.btn-stop:active{transform:scale(.97)}
 
+/* MODAL */
 .overlay{position:fixed;inset:0;background:rgba(26,26,20,.62);display:flex;align-items:flex-end;justify-content:center;z-index:200;backdrop-filter:blur(2px)}
 @media(min-width:600px){.overlay{align-items:center;padding:1rem}}
 .modal{background:var(--surface);border-radius:20px 20px 0 0;padding:1.5rem;width:100%;max-width:430px;max-height:92vh;overflow-y:auto;animation:fadeIn .22s ease both;border:1.5px solid var(--border)}
@@ -133,11 +132,25 @@ html,body{background:var(--bg);font-family:'Syne',sans-serif;color:var(--ink);mi
 .mbtn-cancel{width:100%;padding:11px;border-radius:10px;border:1.5px solid var(--border2);background:transparent;color:var(--ink3);font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:border-color .15s}
 .mbtn-cancel:hover{border-color:var(--ink2)}
 
+/* CATALOGO guardado */
+.saved-prods{margin-bottom:.5rem}
+.saved-chip{display:inline-flex;align-items:center;gap:5px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;cursor:pointer;margin:0 4px 4px 0;transition:all .15s;font-family:'Syne',sans-serif}
+.saved-chip:hover{border-color:var(--teal);color:var(--teal)}
+.saved-chip-del{background:none;border:none;cursor:pointer;color:var(--ink3);font-size:11px;padding:0;margin-left:2px;line-height:1;transition:color .15s}
+.saved-chip-del:hover{color:var(--accent)}
+
+/* HISTORIAL */
 .hist-section{background:var(--surface2);border-top:1.5px solid var(--border);padding:1.25rem}
-.hitem{display:flex;justify-content:space-between;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:6px;animation:fadeIn .3s ease both}
+.hist-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+.hitem{display:flex;justify-content:space-between;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:6px;animation:fadeIn .3s ease both;gap:8px}
 .hleft .hn{font-size:13px;font-weight:700;color:var(--ink)}
 .hleft .hd{font-size:11px;color:var(--ink3);margin-top:2px}
-.hright{font-size:20px;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.hright{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.hamt{font-size:20px;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.hdel{background:none;border:1px solid var(--border2);border-radius:8px;cursor:pointer;color:var(--ink3);font-size:12px;padding:4px 8px;transition:all .15s;font-family:'Syne',sans-serif;white-space:nowrap}
+.hdel:hover{border-color:var(--accent);color:var(--accent)}
+.btn-clear-all{font-size:11px;background:transparent;border:1px solid var(--border2);border-radius:8px;padding:4px 10px;cursor:pointer;color:var(--ink3);font-family:'Syne',sans-serif;transition:all .15s}
+.btn-clear-all:hover{border-color:var(--accent);color:var(--accent)}
 
 @media(max-width:500px){
   .stats{grid-template-columns:repeat(2,1fr)}
@@ -193,34 +206,40 @@ html,body{background:var(--bg);font-family:'Syne',sans-serif;color:var(--ink);mi
 
   <div class="hist-section" id="histSec" style="display:none">
     <div class="main" style="padding-top:0;padding-bottom:0">
-      <div class="sh"><div class="sh-title">Sesiones cerradas hoy</div></div>
+      <div class="hist-header">
+        <div class="sh-title">Sesiones cerradas hoy</div>
+        <button class="btn-clear-all" onclick="clearAllHist()">Borrar todo</button>
+      </div>
       <div id="histList"></div>
     </div>
   </div>
 </div>
 
+<!-- MODAL PRODUCTOS -->
 <div class="overlay" id="ov" style="display:none" onclick="ovClick(event)">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="mtitle" id="mt">Agregar producto</div>
     <div class="msub" id="ms">Selecciona del menú</div>
-    <div class="mcat">Menú rápido</div>
+
+    <div class="mcat">Guardados</div>
+    <div class="saved-prods" id="savedProds"></div>
+
+    <div class="mcat">Menú fijo</div>
     <div class="pgrid" id="pgrid"></div>
+
     <div class="msep"></div>
-    <div class="mcat">Personalizado</div>
+    <div class="mcat">Agregar nuevo y guardar</div>
     <div class="crow">
       <input class="inp" id="cN" placeholder="Nombre del producto">
       <input class="inp inp-sm" id="cP" placeholder="Precio $" type="number">
     </div>
-    <button class="mbtn-add" onclick="submitC()">Agregar</button>
+    <button class="mbtn-add" onclick="submitC()">Agregar y guardar</button>
     <button class="mbtn-cancel" onclick="closeM()">Cancelar</button>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════════
-// CREDENCIALES FIREBASE — Salon Host de Angelo
-// ══════════════════════════════════════════════════
 const FB = {
   apiKey: "AIzaSyAOI4Uz3sHTaDnmtjXn3qvanTqC0sm-QcI",
   authDomain: "salon-host.firebaseapp.com",
@@ -232,12 +251,14 @@ const FB = {
   measurementId: "G-01YJKKJ5S3"
 };
 
-const CATALOG = [
+// Catálogo fijo (siempre visible)
+const FIXED_CATALOG = [
   {name:'Cerveza',price:2500},{name:'Agua',price:1200},
   {name:'Jugo',price:1800},{name:'Gaseosa',price:1500},
   {name:'Empanada',price:2000},{name:'Completo',price:3500},
   {name:'Papas fritas',price:3000},{name:'Café',price:1500},
 ];
+
 const TABLES = [
   {id:1,rate:5000,vip:true},
   {id:2,rate:3500},{id:3,rate:3500},{id:4,rate:3500},
@@ -245,7 +266,8 @@ const TABLES = [
 ];
 
 let ST = {};
-let HIST = [];
+let HIST = {};      // objeto keyed por ts para poder borrar por key
+let SAVED = [];     // productos personalizados guardados
 let closedTotal = 0;
 let modalT = null;
 let db = null;
@@ -253,8 +275,9 @@ let online = false;
 
 TABLES.forEach(t => { ST[t.id] = {on:false,start:null,prods:[]}; });
 
+// ── HELPERS ──────────────────────────────────────────────────
 const round100 = n => Math.round(n / 100) * 100;
-const clp = n => '$' + Math.round(n).toLocaleString('es-CL');
+const clp  = n => '$' + Math.round(n).toLocaleString('es-CL');
 const clpR = n => '$' + round100(n).toLocaleString('es-CL');
 function hms(ms) {
   const s=Math.floor(ms/1000), h=Math.floor(s/3600), m=Math.floor((s%3600)/60), ss=s%60;
@@ -266,6 +289,7 @@ const tPrice = (id,now) => {
 };
 const pTotal = id => (ST[id]?.prods||[]).reduce((a,p)=>a+p.price,0);
 
+// ── FIREBASE ─────────────────────────────────────────────────
 function initFB() {
   try {
     firebase.initializeApp(FB);
@@ -289,9 +313,15 @@ function initFB() {
 
     db.ref('history').on('value', s => {
       const v = s.val();
-      HIST = v ? Object.values(v).sort((a,b)=>b.ts-a.ts) : [];
-      closedTotal = HIST.reduce((a,h)=>a+h.total,0);
+      HIST = v || {};
+      closedTotal = Object.values(HIST).reduce((a,h)=>a+h.total,0);
       renderHist();
+    });
+
+    // Productos guardados por el usuario
+    db.ref('savedProds').on('value', s => {
+      const v = s.val();
+      SAVED = v ? Object.values(v) : [];
     });
 
     show();
@@ -329,7 +359,11 @@ function show() {
 function push(path, val) {
   if (db) db.ref(path).set(val).catch(()=>{});
 }
+function remove(path) {
+  if (db) db.ref(path).remove().catch(()=>{});
+}
 
+// ── MESAS ─────────────────────────────────────────────────────
 function startT(id) {
   ST[id] = {on:true,start:Date.now(),prods:[]};
   push('state/'+id, ST[id]);
@@ -341,19 +375,21 @@ function stopT(id) {
   const tp = tPrice(id,now);
   const pp = pTotal(id);
   const total = round100(tp+pp);
+  const key = 'h'+now;
   const entry = {
-    name:'Mesa '+id, elapsed:now-ST[id].start,
+    key, name:'Mesa '+id, elapsed:now-ST[id].start,
     tableAmt:round100(tp), prodAmt:round100(pp),
     total, time:new Date().toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'}),
     ts:now
   };
   ST[id] = {on:false,start:null,prods:[]};
   push('state/'+id, ST[id]);
-  push('history/'+now, entry);
+  push('history/'+key, entry);
   render();
 }
 
-function rmProd(tableId,idx) {
+// ── PRODUCTOS EN MESA ─────────────────────────────────────────
+function rmProd(tableId, idx) {
   const prods = [...(ST[tableId]?.prods||[])];
   prods.splice(idx,1);
   ST[tableId].prods = prods;
@@ -361,37 +397,89 @@ function rmProd(tableId,idx) {
   render();
 }
 
+// ── HISTORIAL ─────────────────────────────────────────────────
+function deleteHist(key) {
+  remove('history/'+key);
+}
+function clearAllHist() {
+  if (confirm('¿Borrar todo el historial de hoy?')) {
+    remove('history');
+  }
+}
+
+// ── PRODUCTOS GUARDADOS ───────────────────────────────────────
+function deleteSaved(name) {
+  // buscar la key en firebase
+  if (db) {
+    db.ref('savedProds').orderByChild('name').equalTo(name).once('value', s => {
+      s.forEach(child => child.ref.remove());
+    });
+  }
+  SAVED = SAVED.filter(p => p.name !== name);
+  renderSavedChips();
+}
+
+// ── MODAL ─────────────────────────────────────────────────────
 function openM(id) {
   modalT = id;
   document.getElementById('mt').textContent = 'Agregar producto';
   document.getElementById('ms').textContent = 'Mesa '+id+' — selecciona del menú';
   document.getElementById('cN').value = '';
   document.getElementById('cP').value = '';
-  document.getElementById('pgrid').innerHTML = CATALOG.map(p=>`
+
+  document.getElementById('pgrid').innerHTML = FIXED_CATALOG.map(p=>`
     <button class="pbtn" onclick="addP('${p.name}',${p.price})">
       <span class="pbtn-nm">${p.name}</span>
       <span class="pbtn-pr">${clp(p.price)}</span>
     </button>`).join('');
+
+  renderSavedChips();
   document.getElementById('ov').style.display = 'flex';
 }
+
+function renderSavedChips() {
+  const wrap = document.getElementById('savedProds');
+  if (!wrap) return;
+  if (!SAVED.length) {
+    wrap.innerHTML = '<span style="font-size:11px;color:var(--ink3)">Ninguno guardado aún</span>';
+    return;
+  }
+  wrap.innerHTML = SAVED.map(p=>`
+    <span class="saved-chip" onclick="addP('${p.name}',${p.price})">
+      ${p.name} · ${clp(p.price)}
+      <button class="saved-chip-del" onclick="event.stopPropagation();deleteSaved('${p.name}')">✕</button>
+    </span>`).join('');
+}
+
 function closeM() { document.getElementById('ov').style.display='none'; modalT=null; }
 function ovClick(e) { if(e.target===document.getElementById('ov')) closeM(); }
-function addP(name,price) {
-  if(!modalT) return;
+
+function addP(name, price) {
+  if (!modalT) return;
   const prods = [...(ST[modalT]?.prods||[])];
-  prods.push({name,price:+price});
+  prods.push({name, price:+price});
   ST[modalT].prods = prods;
   push('state/'+modalT, ST[modalT]);
   closeM();
   render();
 }
+
 function submitC() {
-  const n=document.getElementById('cN').value.trim();
-  const p=parseFloat(document.getElementById('cP').value);
-  if(!n||!p||isNaN(p)) return;
-  addP(n,p);
+  const n = document.getElementById('cN').value.trim();
+  const p = parseFloat(document.getElementById('cP').value);
+  if (!n || !p || isNaN(p)) return;
+
+  // Guardar en firebase si no existe ya
+  const exists = SAVED.some(x => x.name.toLowerCase() === n.toLowerCase());
+  if (!exists) {
+    const key = 'sp'+Date.now();
+    push('savedProds/'+key, {name:n, price:p, key});
+  }
+
+  addP(n, p);
 }
 
+// ── RENDER ────────────────────────────────────────────────────
 function render() {
   const now = Date.now();
   const grid = document.getElementById('grid');
@@ -413,7 +501,7 @@ function render() {
           <div class="pchip">
             <span class="pchip-nm">${p.name}</span>
             <span class="pchip-pr">${clp(p.price)}</span>
-            <button class="pchip-del" onclick="rmProd(${t.id},${idx})">✕</button>
+            <button class="pchip-del" onclick="rmProd(${t.id},${idx})" title="Quitar">✕</button>
           </div>`).join('')}
         <div class="psubtotal">
           <span class="l">Subtotal productos</span>
@@ -468,20 +556,25 @@ function updateStats(now) {
 }
 
 function renderHist() {
-  const sec = document.getElementById('histSec');
+  const sec  = document.getElementById('histSec');
   const list = document.getElementById('histList');
-  if(!HIST.length){sec.style.display='none';return}
-  sec.style.display='block';
-  list.innerHTML = HIST.slice(0,20).map(h=>`
+  const entries = Object.values(HIST).sort((a,b)=>b.ts-a.ts);
+  if (!entries.length) { sec.style.display='none'; return; }
+  sec.style.display = 'block';
+  list.innerHTML = entries.slice(0,30).map(h=>`
     <div class="hitem">
       <div class="hleft">
         <div class="hn">${h.name}</div>
         <div class="hd">${h.time} · ${hms(h.elapsed)}${h.prodAmt>0?' · Productos '+clpR(h.prodAmt):''}</div>
       </div>
-      <div class="hright">${clpR(h.total)}</div>
+      <div class="hright">
+        <div class="hamt">${clpR(h.total)}</div>
+        <button class="hdel" onclick="deleteHist('${h.key}')">Borrar</button>
+      </div>
     </div>`).join('');
 }
 
+// ── TICK ──────────────────────────────────────────────────────
 setInterval(()=>{
   const now = Date.now();
   document.getElementById('clk').textContent = new Date().toLocaleTimeString('es-CL');
